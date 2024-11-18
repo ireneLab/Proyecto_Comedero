@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos del Sensor</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .data { margin: 20px; padding: 10px; background: #f4f4f4; }
+    </style>
+</head>
+<body>
+    <h1>Datos del Sensor</h1>
+    <div id="datos"></div>
+
+    <script>
+        async function fetchData() {
+            const response = await fetch('datos.json');
+            const data = await response.json();
+            const div = document.getElementById('datos');
+            div.innerHTML = `
+                <div class="data">
+                    <p>Sensor: ${data.sensor}</p>
+                    <p>Valor: ${data.valor}</p>
+                </div>
+            `;
+        }
+
+        setInterval(fetchData, 5000); // Actualiza cada 5 segundos
+    </script>
+</body>
+</html>
